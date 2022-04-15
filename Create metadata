@@ -1,0 +1,48 @@
+import json
+import os
+import random
+
+Stillimage= []
+gifimage=[]
+for n in range(1, 401):
+    for i in range(1,26):
+        Stillimage.append("ipfs://QmNvsyi5HNBPP7d2Q6LXQQA9WJEahKx6eFvknu2TFavpwK/"+str(i)+".png")
+        gifimage.append("ipfs://QmPDCMBbfTDVrbSVXy5xep9sdGRTXB5GK1pdLeQN7vAzWi/"+str(i)+".gif")
+        
+for n in range(1, 10001):
+        jj = {
+          "name": "TrippyEggs #"+str(n),
+          "description": "TrippyEggs DeFi: Mint | Stake | Earn. Harvest your rewards at https://trippyeggs.com.",
+          "image": Stillimage[n-1],
+          "animation_url":gifimage[n-1],
+          "dna": str(random.randint(11111111, 999999999))+"GTE"+str(n),
+          "edition": 1,
+          "date": 1650153600,
+          "designer": "Eric Kleppen",
+          "external_url": "https://trippyeggs.com",
+          "youtube_url": "https://www.youtube.com/watch?v=50vnF0tUOH0",
+          "attributes":[
+              {
+              "trait_type": "TrippyEgg",
+              "value": "TrippyArt"
+             },
+              {
+              "trait_type": "Edition",
+              "value": "Genesis"
+             },
+              {
+              "trait_type": "Utility",
+              "value": "Membership Pass"
+             },
+              {
+              "trait_type": "Can_Stake",
+              "value": "Yes"
+            }
+          ],
+          "compiler": "Eric Kleppen's Code"
+        }
+        json_object = json.dumps(jj, indent = 4)
+        with open(str(n)+'.json', "w") as outfile:
+            outfile.write(json_object)
+        with open('all_eggs.json', 'a') as outfile:
+            outfile.write(json_object+",")
